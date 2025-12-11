@@ -75,7 +75,29 @@ This project demonstrates an embedded, real-time, secure voting flow where each 
 ---
 
 ## 📂 Repository Structure
-(Keep your existing repo structure here — same filenames and folders as original README)
+
+| Folder / File | Description |
+|---------------|-------------|
+| **Core/** | Main application source code |
+| ├── **Inc/** | Header files (*.h) |
+| ├── **Src/** | Source files (*.c) |
+| └── **Startup/** | Startup files & vector table |
+| **Debug/** | Auto-generated debug build artifacts |
+| ├── **Core/** | Compiled Core build outputs |
+| ├── **Drivers/STM32F4xx_HAL_Driver/** | HAL driver compiled outputs |
+| ├── *makefile* | Build rules |
+| ├── *objects.list* | Object file listing |
+| ├── *objects.mk* | Auto-generated dependency rules |
+| ├── *sources.mk* | Auto-generated source list |
+| ├── *theLast.elf* | Compiled ELF binary |
+| ├── *theLast.list* | Assembly listing |
+| └── *theLast.map* | Memory map of the build |
+| **Drivers/** | Driver files used by the application |
+| **README.md** | Main project documentation |
+| **STM32F401CCUX_FLASH.ld** | Linker script for STM32F401 |
+| **theLast Debug.launch** | Debug launch configuration |
+| **theLast.ioc** | STM32CubeMX configuration file |
+
 
 ---
 
