@@ -1,33 +1,75 @@
-# RFID Voting System (STM32CubeIDE)
+# RFID Voting System – STM32F401 + MFRC522 + SSD1306
 
-**Short description**  
-An STM32F4-based RFID voting prototype that uses an MFRC522 (SPI) reader, an SSD1306 OLED (I2C implemented at register level), a potentiometer (ADC) for candidate selection and a push-button to confirm. Authorized UIDs are stored in the firmware; each authorized card may vote once per power-up. The UI is rendered on the SSD1306; votes are counted in RAM and shown on request.
+A fully working **RFID-based electronic voting system** developed using **STM32CubeIDE**,  
+**MFRC522 RFID Reader (SPI)**, **SSD1306 OLED Display (I2C – register level)**,  
+**Potentiometer (ADC)** for selecting candidates, and **Push Button + Buzzer** for UI controls.
 
----
-
-## Repository contents (quick)
-- `Core/`, `Drivers/`, `Debug/` — standard STM32CubeIDE project layout (generated `.ioc`, HAL files, linker script `STM32F401CCUX_FLASH.ld` present).
-- `main.c` — high-level application (uses register-level I2C/ADC/GPIO + HAL SPI for MFRC522).
-- `rc522.c/.h` — MFRC522 driver (expected to be in the project — required).
-- README (this file)...
+This project demonstrates an embedded, real-time, secure voting flow where each authorized RFID card can vote only once.
 
 ---
 
-## Features
-- MFRC522 RFID reader (HAL SPI) for voter identification.
-- SSD1306 OLED display controlled via register-level I2C (PB6=SCL, PB7=SDA).
-- Potentiometer on PA1 (ADC1_IN1) to choose candidate (three ranges).
-- Push-button (PA0) to cast vote / show counts (long press behavior included).
-- Buzzer on PB2 for audio feedback.
-- LED on PC13 to indicate RFID read activity.
-- Simple UI states: Welcome → Verify UID → Cast Vote → Vote Casted → Vote Counts.
-- Runs on STM32F401 series (CubeMX-generated skeleton present).
+# 📌 **Features**
+- ✔ **RFID-based voter authentication** using MFRC522  
+- ✔ **OLED UI** using SSD1306 (Register-level I2C implementation)  
+- ✔ **Potentiometer for candidate selection** (ADC on PA1)  
+- ✔ **Push-button for vote confirmation**  
+- ✔ **Buzzer feedback** for valid/invalid card  
+- ✔ **Anti-double-voting logic** (each authorized UID can vote only once)  
+- ✔ **Shows total vote count** on long button press  
+- ✔ **LED activity indicator** for RFID scans  
+- ✔ Fully working STM32CubeIDE project included in repo  
 
 ---
 
-## Quick start — clone & open
+# 📂 **Repository Structure**
 
+
+---
+
+# 🛠 **Hardware Requirements**
+| Component | Purpose |
+|----------|---------|
+| STM32F401 / STM32F4 Board | Main controller |
+| MFRC522 RFID Reader | Reads card UID (SPI) |
+| SSD1306 128×64 OLED | UI (I2C) |
+| Potentiometer | Candidate selection (ADC) |
+| Push Button | Vote confirmation |
+| Buzzer | Audio alerts |
+| LED on PC13 | RFID activity |
+
+---
+
+# 🔌 **Pin Configuration (Used in Code)**
+
+### **MFRC522 (SPI1)**
+| MFRC522 Pin | STM32 Pin |
+|-------------|-----------|
+| SDA / CS    | PA4 |
+| SCK         | PA5 |
+| MOSI        | PA7 |
+| MISO        | PA6 |
+| RST         | PB0 |
+| IRQ         | — (not used) |
+
+### **SSD1306 OLED (I2C – Register Level Implementation)**
+| Signal | STM32 Pin |
+|--------|-----------|
+| SCL     | PB6 |
+| SDA     | PB7 |
+
+### **Other Peripherals**
+| Function | Pin |
+|----------|-----|
+| Button (active-low) | PA0 |
+| Potentiometer (ADC1_IN1) | PA1 |
+| Buzzer | PB2 |
+| LED (Active-low) | PC13 |
+
+---
+
+# 🚀 **How to Clone & Open the Project**
+
+### **1️⃣ Clone the repository**
 ```bash
-# clone repository
-git clone https://github.com/<your-username>/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/PraneethUday/RFID-Voting-System.git
+cd RFID-Voting-System
