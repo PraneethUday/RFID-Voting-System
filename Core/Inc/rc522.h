@@ -48,7 +48,7 @@ extern SPI_HandleTypeDef hspi1;
 // Page 0: Command and Status
 #define     Reserved00            0x00
 #define     CommandReg            0x01
-#define     CommIEnReg            0x02
+#define     CommIEnReg           0x02
 #define     DivlEnReg             0x03
 #define     CommIrqReg            0x04
 #define     DivIrqReg             0x05
@@ -88,7 +88,7 @@ extern SPI_HandleTypeDef hspi1;
 #define     Reserved22            0x25
 #define     RFCfgReg              0x26
 #define     GsNReg                0x27
-#define     CWGsPReg	          0x28
+#define     CWGsPReg	            0x28
 #define     ModGsPReg             0x29
 #define     TModeReg              0x2A
 #define     TPrescalerReg         0x2B
@@ -112,7 +112,7 @@ extern SPI_HandleTypeDef hspi1;
 #define     Reserved31            0x3C
 #define     Reserved32            0x3D
 #define     Reserved33            0x3E
-#define     Reserved34			  0x3F
+#define     Reserved34			      0x3F
 
 // Functions for manipulating the MFRC522
 void MFRC522_Init(void);
@@ -124,3 +124,4 @@ uchar MFRC522_Write(uchar blockAddr, uchar *writeData);
 uchar MFRC522_Auth(uchar authMode, uchar BlockAddr, uchar *Sectorkey, uchar *serNum);
 uchar MFRC522_Read(uchar blockAddr, uchar *recvData);
 void MFRC522_Halt(void);
+
