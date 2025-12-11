@@ -1,8 +1,8 @@
 # 🚀 RFID Voting System — STM32F401 + MFRC522 + SSD1306
 
-A fully working **RFID-based electronic voting system** developed using **STM32CubeIDE**, **MFRC522 RFID Reader (SPI)**, **SSD1306 OLED Display (I2C – register level)**, **Potentiometer (ADC)** for selecting candidates, and **Push Button + Buzzer** for UI controls.
+A fully working **RFID based electronic voting system** developed using **STM32CubeIDE**, **MFRC522 RFID Reader (SPI)**, **SSD1306 OLED Display (I2C register level)**, **Potentiometer (ADC)** for selecting candidates, and **Push Button + Buzzer** for UI controls.
 
-This project demonstrates an embedded, real-time, secure voting flow where each authorized RFID card can vote only once.
+This project demonstrates an embedded, real time, secure voting flow where each authorized RFID card can vote only once.
 
 ---
 
@@ -20,89 +20,97 @@ This project demonstrates an embedded, real-time, secure voting flow where each 
 
 ```mermaid
 flowchart TB
-  A[RFID-based voter authentication<br/>(MFRC522)] --> B[OLED UI<br/>(SSD1306, I2C register-level)]
-  B --> C[Potentiometer for candidate selection<br/>(ADC on PA1)]
-  C --> D[Push-button for vote confirmation<br/>(active-low PA0)]
-  D --> E[Buzzer feedback for valid/invalid card<br/>(PB2)]
-  E --> F[Anti-double-voting logic<br/>(each authorized UID votes once)]
-  F --> G[Show total vote count on long button press]
-  G --> H[LED activity indicator<br/>(PC13)]
-  style A fill:#0ea5e9,stroke:#0a3e61,color:#fff
-  style B fill:#10b981,stroke:#094c36,color:#fff
-  style C fill:#f59e0b,stroke:#7a4f00,color:#fff
-  style D fill:#8b5cf6,stroke:#3a2359,color:#fff
-  style E fill:#ef4444,stroke:#5f1515,color:#fff
-  style F fill:#06b6d4,stroke:#074b52,color:#fff
-  style G fill:#60a5fa,stroke:#123a66,color:#fff
-  style H fill:#94a3b8,stroke:#2b3a45,color:#fff
+  F1[RFID authentication using MFRC522] --> F2[OLED UI using SSD1306]
+  F2 --> F3[Potentiometer for candidate selection]
+  F3 --> F4[Push button for vote confirmation]
+  F4 --> F5[Buzzer feedback for valid or invalid card]
+  F5 --> F6[Anti double voting logic]
+  F6 --> F7[Show total vote count on long button press]
+  F7 --> F8[LED activity indicator for RFID scans]
+
+  style F1 fill:#0ea5e9,stroke:#0a3e61,color:#fff
+  style F2 fill:#10b981,stroke:#094c36,color:#fff
+  style F3 fill:#f59e0b,stroke:#7a4f00,color:#fff
+  style F4 fill:#8b5cf6,stroke:#3a2359,color:#fff
+  style F5 fill:#ef4444,stroke:#5f1515,color:#fff
+  style F6 fill:#06b6d4,stroke:#074b52,color:#fff
+  style F7 fill:#60a5fa,stroke:#123a66,color:#fff
+  style F8 fill:#94a3b8,stroke:#2b3a45,color:#fff
 
 flowchart LR
-  root["RFID-Voting-System/"]
-  core["/Core/"]
-  drivers["/Drivers/"]
-  docs["/Docs/"]
-  assets["/Assets/"]
-  ideproj["/STM32CubeIDE_Project/"]
-  root --> core
-  root --> drivers
-  root --> docs
-  root --> assets
-  root --> ideproj
+  R["RFID-Voting-System"]
+  C["Core"]
+  D["Drivers"]
+  DOC["Docs"]
+  A["Assets"]
+  P["ProjectFiles"]
+  R --> C
+  R --> D
+  R --> DOC
+  R --> A
+  R --> P
 
-  core --> mainc["main.c"]
-  core --> votingc["voting.c"]
-  core --> mfrc522c["mfrc522.c"]
-  drivers --> spi["spi.c / spi.h"]
-  drivers --> ssd["i2c_ssd1306.c / ssd1306.h"]
-  drivers --> adcbtn["adc_button.c / adc_button.h"]
-  docs --> readme["README.md"]
-  docs --> wiring["WIRING.md"]
-  assets --> image["readme-preview.png"]
-  ideproj --> ioc["RFID_Voting_System.ioc"]
+  C --> C1["main.c"]
+  C --> C2["voting.c"]
+  C --> C3["mfrc522.c"]
+
+  D --> D1["spi.c"]
+  D --> D2["i2c_ssd1306.c"]
+  D --> D3["adc_button.c"]
+
+  DOC --> DOC1["README.md"]
+  DOC --> DOC2["WIRING.md"]
+
+  A --> IMG1["readme-preview.png"]
+
+  P --> IOC["RFID_Voting_System.ioc"]
 
 pie
-  title Hardware Composition (example split)
-  "MCU (STM32F401)": 25
-  "RFID (MFRC522)": 25
-  "OLED (SSD1306)": 20
-  "Peripherals (Pot/Button/Buzzer/LED)": 30
+  "MCU STM32F401": 25
+  "RFID MFRC522": 25
+  "OLED SSD1306": 20
+  "Peripherals Pot Button Buzzer LED": 30
 
 flowchart TB
-  subgraph MFRC522_SPI ["MFRC522 (SPI1)"]
-    SDA["SDA / CS → PA4"]
-    SCK["SCK → PA5"]
-    MOSI["MOSI → PA7"]
-    MISO["MISO → PA6"]
-    RST["RST → PB0"]
-    IRQ["IRQ → (not used)"]
+  subgraph MFRC522_SPI["MFRC522 SPI connections"]
+    M1["SDA CS  -> PA4"]
+    M2["SCK      -> PA5"]
+    M3["MOSI     -> PA7"]
+    M4["MISO     -> PA6"]
+    M5["RST      -> PB0"]
+    M6["IRQ      -> not used"]
   end
 
-  subgraph SSD1306_I2C ["SSD1306 (I2C)"]
-    SCL["SCL → PB6"]
-    SDA2["SDA → PB7"]
+  subgraph SSD1306_I2C["SSD1306 I2C connections"]
+    S1["SCL -> PB6"]
+    S2["SDA -> PB7"]
   end
 
-  subgraph OTHER ["Other Peripherals"]
-    BTN["Button (active-low) → PA0"]
-    POT["Potentiometer (ADC1_IN1) → PA1"]
-    BUZ["Buzzer → PB2"]
-    LED["LED (Active-low) → PC13"]
+  subgraph OTHER["Other peripherals"]
+    O1["Button active low -> PA0"]
+    O2["Potentiometer ADC -> PA1"]
+    O3["Buzzer -> PB2"]
+    O4["LED active low -> PC13"]
   end
 
-  MFRC522_SPI --> MCU["STM32F401"]
+  MFRC522_SPI --> MCU["MCU STM32F401"]
   SSD1306_I2C --> MCU
   OTHER --> MCU
 
 flowchart LR
-  A[RFID Auth — ██████████████████████████ 85%] --> B
-  B[OLED UI — █████████████████████ 65%] --> C
-  C[Pot/Button — █████████████████████████████ 95%] --> D
-  style A fill:#e6faff,stroke:#cfeefd
-  style B fill:#ecfff2,stroke:#dff6e8
-  style C fill:#fff8e6,stroke:#fdeacf
+  B1["RFID Auth 85%"] --> B2
+  B2["OLED UI 65%"] --> B3
+  B3["Pot and Button 95%"] --> End
+  style B1 fill:#e6faff,stroke:#cfeefd
+  style B2 fill:#ecfff2,stroke:#dff6e8
+  style B3 fill:#fff8e6,stroke:#fdeacf
 
 pie
-  "MCU (STM32F401)": 25
-  "RFID (MFRC522)": 25
-  "OLED (SSD1306)": 20
+  "MCU STM32F401": 25
+  "RFID MFRC522": 25
+  "OLED SSD1306": 20
   "Peripherals": 30
+
+
+
+
