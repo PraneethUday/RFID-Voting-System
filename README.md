@@ -20,96 +20,85 @@ This project demonstrates an embedded, real time, secure voting flow where each 
 
 ```mermaid
 flowchart TB
-  F1[RFID authentication using MFRC522] --> F2[OLED UI using SSD1306]
-  F2 --> F3[Potentiometer for candidate selection]
-  F3 --> F4[Push button for vote confirmation]
-  F4 --> F5[Buzzer feedback for valid or invalid card]
-  F5 --> F6[Anti double voting logic]
-  F6 --> F7[Show total vote count on long button press]
-  F7 --> F8[LED activity indicator for RFID scans]
+    A[RFID authentication using MFRC522]
+    B[OLED UI using SSD1306]
+    C[Potentiometer candidate selection]
+    D[Push button confirmation]
+    E[Buzzer feedback]
+    F[Anti double voting logic]
+    G[Show total vote count]
+    H[LED activity indicator]
 
-  style F1 fill:#0ea5e9,stroke:#0a3e61,color:#fff
-  style F2 fill:#10b981,stroke:#094c36,color:#fff
-  style F3 fill:#f59e0b,stroke:#7a4f00,color:#fff
-  style F4 fill:#8b5cf6,stroke:#3a2359,color:#fff
-  style F5 fill:#ef4444,stroke:#5f1515,color:#fff
-  style F6 fill:#06b6d4,stroke:#074b52,color:#fff
-  style F7 fill:#60a5fa,stroke:#123a66,color:#fff
-  style F8 fill:#94a3b8,stroke:#2b3a45,color:#fff
+    A --> B --> C --> D --> E --> F --> G --> H
+
 
 flowchart LR
-  R["RFID-Voting-System"]
-  C["Core"]
-  D["Drivers"]
-  DOC["Docs"]
-  A["Assets"]
-  P["ProjectFiles"]
-  R --> C
-  R --> D
-  R --> DOC
-  R --> A
-  R --> P
+    ROOT[RFID-Voting-System]
+    C[Core]
+    D[Drivers]
+    DOC[Docs]
+    A[Assets]
+    P[ProjectFiles]
 
-  C --> C1["main.c"]
-  C --> C2["voting.c"]
-  C --> C3["mfrc522.c"]
+    ROOT --> C
+    ROOT --> D
+    ROOT --> DOC
+    ROOT --> A
+    ROOT --> P
 
-  D --> D1["spi.c"]
-  D --> D2["i2c_ssd1306.c"]
-  D --> D3["adc_button.c"]
+    C --> C1[main.c]
+    C --> C2[voting.c]
+    C --> C3[mfrc522.c]
 
-  DOC --> DOC1["README.md"]
-  DOC --> DOC2["WIRING.md"]
+    D --> D1[spi.c]
+    D --> D2[ssd1306_i2c.c]
+    D --> D3[adc_button.c]
 
-  A --> IMG1["readme-preview.png"]
+    DOC --> DOC1[README.md]
+    DOC --> DOC2[WIRING.md]
 
-  P --> IOC["RFID_Voting_System.ioc"]
+    A --> A1[preview.png]
+
+    P --> IOC[RFID_Voting_System.ioc]
+
 
 pie
-  "MCU STM32F401": 25
-  "RFID MFRC522": 25
-  "OLED SSD1306": 20
-  "Peripherals Pot Button Buzzer LED": 30
+    title Hardware Components
+    "MCU STM32F401" : 25
+    "RFID MFRC522" : 25
+    "OLED SSD1306" : 20
+    "Peripherals" : 30
+
 
 flowchart TB
-  subgraph MFRC522_SPI["MFRC522 SPI connections"]
-    M1["SDA CS  -> PA4"]
-    M2["SCK      -> PA5"]
-    M3["MOSI     -> PA7"]
-    M4["MISO     -> PA6"]
-    M5["RST      -> PB0"]
-    M6["IRQ      -> not used"]
-  end
 
-  subgraph SSD1306_I2C["SSD1306 I2C connections"]
-    S1["SCL -> PB6"]
-    S2["SDA -> PB7"]
-  end
+    subgraph MFRC522 SPI Pins
+        PA4[SDA / CS -> PA4]
+        PA5[SCK -> PA5]
+        PA7[MOSI -> PA7]
+        PA6[MISO -> PA6]
+        PB0[RST -> PB0]
+        IRQ[IRQ -> Not used]
+    end
 
-  subgraph OTHER["Other peripherals"]
-    O1["Button active low -> PA0"]
-    O2["Potentiometer ADC -> PA1"]
-    O3["Buzzer -> PB2"]
-    O4["LED active low -> PC13"]
-  end
+    subgraph SSD1306 I2C Pins
+        PB6[SCL -> PB6]
+        PB7[SDA -> PB7]
+    end
 
-  MFRC522_SPI --> MCU["MCU STM32F401"]
-  SSD1306_I2C --> MCU
-  OTHER --> MCU
+    subgraph Other Peripherals
+        BTN[Button -> PA0]
+        POT[Potentiometer -> PA1]
+        BUZ[Buzzer -> PB2]
+        LED[LED -> PC13]
+    end
 
-flowchart LR
-  B1["RFID Auth 85%"] --> B2
-  B2["OLED UI 65%"] --> B3
-  B3["Pot and Button 95%"] --> End
-  style B1 fill:#e6faff,stroke:#cfeefd
-  style B2 fill:#ecfff2,stroke:#dff6e8
-  style B3 fill:#fff8e6,stroke:#fdeacf
+    MCU[STM32F401] --> PA4 & PA5 & PA7 & PA6 & PB0
+    MCU --> PB6 & PB7
+    MCU --> BTN & POT & BUZ & LED
 
-pie
-  "MCU STM32F401": 25
-  "RFID MFRC522": 25
-  "OLED SSD1306": 20
-  "Peripherals": 30
+
+
 
 
 
