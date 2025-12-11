@@ -14,32 +14,6 @@
 
 This project demonstrates an embedded, real-time, secure voting flow where each authorized RFID card can vote only once.
 
----
-
-## ✨ Visual Snapshot (animated)
-
-<!-- Animated summary SVG — feature bars -->
-<p align="center">
-<svg width="760" height="160" viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Project visual summary">
-  <rect x="8" y="8" rx="10" ry="10" width="744" height="144" fill="#ffffff" stroke="#e6eef8" />
-  <text x="26" y="34" font-family="Arial" font-size="14" fill="#0b2a4a" font-weight="700">Project Summary</text>
-
-  <text x="26" y="62" font-size="12" fill="#334155">RFID Auth</text>
-  <rect x="120" y="48" width="0" height="16" rx="6" fill="#0ea5e9">
-    <animate attributeName="width" from="0" to="260" dur="0.9s" begin="0.1s" fill="freeze" />
-  </rect>
-
-  <text x="26" y="92" font-size="12" fill="#334155">OLED UI</text>
-  <rect x="120" y="78" width="0" height="16" rx="6" fill="#10b981">
-    <animate attributeName="width" from="0" to="200" dur="1s" begin="0.25s" fill="freeze" />
-  </rect>
-
-  <text x="26" y="122" font-size="12" fill="#334155">Potentiometer + Button</text>
-  <rect x="200" y="108" width="0" height="16" rx="6" fill="#f59e0b">
-    <animate attributeName="width" from="0" to="300" dur="1.1s" begin="0.4s" fill="freeze" />
-  </rect>
-</svg>
-</p>
 
 ---
 
@@ -56,31 +30,6 @@ This project demonstrates an embedded, real-time, secure voting flow where each 
 
 ---
 
-## 📈 Data Visualizations (SVG + small legends)
-Below are a few visual components to replace ordinary tables — still accessible (text is included) and GitHub-compatible.
-
-### 1) Feature Coverage (animated bars)
-<p align="center">
-<svg width="720" height="140" viewBox="0 0 720 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Feature coverage bars">
-  <rect x="6" y="6" width="708" height="128" rx="8" fill="#fff" stroke="#e6eef8"/>
-  <text x="18" y="28" font-family="Arial" font-size="13" fill="#0b2a4a" font-weight="700">Feature Coverage</text>
-
-  <text x="18" y="54" font-size="11" fill="#334155">RFID Auth</text>
-  <rect x="110" y="42" width="0" height="12" rx="6" fill="#0ea5e9">
-    <animate attributeName="width" from="0" to="420" dur="1s" begin="0.05s" fill="freeze"/>
-  </rect>
-
-  <text x="18" y="78" font-size="11" fill="#334155">OLED UI</text>
-  <rect x="110" y="66" width="0" height="12" rx="6" fill="#10b981">
-    <animate attributeName="width" from="0" to="360" dur="1s" begin="0.15s" fill="freeze"/>
-  </rect>
-
-  <text x="18" y="102" font-size="11" fill="#334155">Pot/Button</text>
-  <rect x="110" y="90" width="0" height="12" rx="6" fill="#f59e0b">
-    <animate attributeName="width" from="0" to="480" dur="1s" begin="0.25s" fill="freeze"/>
-  </rect>
-</svg>
-</p>
 
 ### 2) Hardware Composition — Pie Chart (SVG)
 <p align="center">
